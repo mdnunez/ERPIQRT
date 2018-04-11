@@ -3,7 +3,7 @@
 # ERPIQRT 0.1.0
 A model-based cognitive neuroscience account of individual differences in cognitive abilities (ERPIQRT).
 
-**Authors: Anna-Lena Schubert from Heidelberg University, Germany and Michael D. Nunez and Joachim Vandekerckhove from the University of California, Irvine, USA**
+**Authors: Anna-Lena Schubert from Heidelberg University, Germany and Michael D. Nunez and Joachim Vandekerckhove from the University of California, Irvine, USA and Dirk Hagemann from Heidelberg University, Germany**
 
 ### Research Questions
 
