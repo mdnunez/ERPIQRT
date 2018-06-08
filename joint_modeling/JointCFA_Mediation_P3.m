@@ -35,6 +35,7 @@
 %  03/20/18     Anna-Lena Schubert         Added prediction of drift and IQ
 %                                          by P3 latent P3 factor
 %  04/11/18     Michael Nunez               Conversion to releasable code
+%  04/30/18     Michael Nunez              Add second set of data
 
 %% Notes:
 % 1) Fix gnu parallel by removing "--tollef" line from /etc/parallel/config
@@ -43,12 +44,19 @@
 
 %% Load the data
 
-load('../Data/data.mat');        % load IQ and ERP data
-load('../Data/RTdata.mat');      % load RT data
+firstset = load('../Data/data.mat');        % load IQ and ERP data
+secondset = load('../Data/SecondData.mat');
+firstsetRT = load('../Data/RTdata.mat');      % load RT data
+secondsetRT = load('../Data/SecondRT.mat');
 
-N = numel(data(:,1));   % number of participants
-IQdata = data(:,2:7);   % IQ data
-ERPdata = data(:,8:25); % ERP data
+bothdata = [firstset.data ; secondset.SecondSet];
+N = numel(bothdata(:,1));   % number of participants
+IQdata = bothdata(:,2:7);   % IQ data
+ERPdata = bothdata(:,8:25); % ERP data
+
+person = [firstsetRT.person ; secondsetRT.person];
+task = [firstsetRT.task ; secondsetRT.task];
+y = [firstsetRT.y ; secondsetRT.y];
 
 subjects = unique(person);
 P = length(subjects);

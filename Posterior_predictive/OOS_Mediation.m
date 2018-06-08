@@ -26,6 +26,8 @@
 %                   Adaptations for JAGS_OOS_noMediation.py output
 %  01/22/18      Michael Nunez         Parameter changes for new samples
 %  03/09/18     Michael Nunez          Conversion to releasable code
+%  05/21/18     Michael Nunez           Change save location
+
 
 %% Model fit evaluation
 
@@ -36,9 +38,9 @@ data = ThirdSet;
 N = size(data,1);
 
 nSim = 150; %50 samples * 3 chains, see JAGS_OOS2_noMediation.py
-noIQsamps = rdir('/home/michael/data10/michael/intel/jagsout/behavmodel_OOS2_noIQ_Mediation_Mar_*.mat');
-noERPsamps = rdir('/home/michael/data10/michael/intel/jagsout/behavmodel_OOS2_noERP_Mediation_Mar_*.mat');
-noRTsamps = rdir('/home/michael/data10/michael/intel/jagsout/behavmodel_OOS2_noAccRT_Mediation_Mar_*.mat');
+noIQsamps = rdir('/home/michael/data10/michael/intel/jagsout/behavmodel_OOS2_noIQ_Mediation_May_*.mat');
+noERPsamps = rdir('/home/michael/data10/michael/intel/jagsout/behavmodel_OOS2_noERP_Mediation_May_*.mat');
+noRTsamps = rdir('/home/michael/data10/michael/intel/jagsout/behavmodel_OOS2_noAccRT_Mediation_May_*.mat');
 
 IQsim = [];
 for j=1:length(noRTsamps)
@@ -70,7 +72,7 @@ end
 IQ = IQsim;
 RTre = ysim;
 ERPdata = ERPsim;
-saveit = '/home/michael/data10/michael/intel/jagsout/Eval_Med_OOS.mat';
+saveit = '../Results/Eval_Med_OOS.mat';
 fprintf('Saving %s ...\n',saveit);
 save(saveit,'IQ','RTre','ERPdata');
 

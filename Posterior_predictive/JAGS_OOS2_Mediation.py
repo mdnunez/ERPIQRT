@@ -26,6 +26,7 @@
 # 03/17/17      Michael Nunez                  Change randsampLength for memory test
 # 08/30/17      Michael Nunez                  Increase randsampLength
 # 03/09/18      Michael Nunez            Evaluate joint data
+# 05/24/18      Michael Nunez                          Load local results
 
 # Imports
 import numpy as np
@@ -45,7 +46,7 @@ saveloc = '/home/michael/data10/michael/intel'
 # the original priors
 
 chainLength = 30000  # chain length
-results = sio.loadmat('/home/michael/data10/michael/intel/Results/Joint_Mediation.mat')
+results = sio.loadmat('../Results/Joint_Mediation.mat')
 
 # define the model
 model = '''

@@ -25,8 +25,8 @@
 %  02/01/18     Michael Nunez          Conversion to releasable code
 %  03/02/18     Michael Nunez         Evaluate joint data
 %  03/06/18     Michael Nunez     Fixes for missing data
-
-%%%UNFINISHED%%%
+%  04/16/18     Michael Nunez         Load local results
+%  05/18/18     Michael Nunez           Change save location
 
 %% Model fit evaluation
 addpath(genpath('..'));
@@ -35,7 +35,7 @@ firstset = load('../Data/data.mat');        % load IQ and ERP data
 secondset = load('../Data/SecondData.mat');
 firstsetRT = load('../Data/RTdata.mat');      % load RT data
 secondsetRT = load('../Data/SecondRT.mat');
-load('~/data10/michael/intel/Results/Joint_noMediation.mat');
+load('../Results/Joint_noMediation.mat');
 
 jagsout = readjagsout(stats,diagnostics);
 fprintf('The maximum Gelman-Rubin statistic is %.3f \n',max(jagsout.Rhat));
@@ -57,7 +57,7 @@ v = zeros(chainLength,14,N);
 a = zeros(chainLength,14,N);
 ter = zeros(chainLength,14,N);
 
-if exist('../../final_results/Eval_noMed_IS.mat') ~= 2
+if exist('../Results/Eval_noMed_IS.mat') ~= 2
     rng(13);
     for i = 1:N
         for k = 1:6
@@ -151,10 +151,10 @@ if exist('../../final_results/Eval_noMed_IS.mat') ~= 2
         end
     end
     RTre = RTre';
-save('Eval_noMed_IS.mat','IQ','RTdata','ACCdata','RTre','ERPdata')
+save('../Results/Eval_noMed_IS.mat','IQ','RTdata','ACCdata','RTre','ERPdata')
 else
     fprintf('Loading found simulated data...\n');
-    load('../../final_results/Eval_noMed_IS.mat');
+    load('../Results/Eval_noMed_IS.mat');
 end
 
 

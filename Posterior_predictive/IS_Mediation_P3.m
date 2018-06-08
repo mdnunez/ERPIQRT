@@ -1,5 +1,5 @@
-%IS_Mediation.m   Evaluated in-sample prediction
-%                    for Mediation model
+%IS_Mediation_P3.m   Evaluated in-sample prediction
+%                    for Mediation_P3 model
 %
 
 % Copyright (C) 2018 Anna-Lena Schubert <anna-lena.schubert@psychologie.uni-heidelberg.de>
@@ -21,35 +21,23 @@
 %% Record of revisions:
 %   Date           Programmers               Description of change
 %   ====        =================            =====================
-%  01/22/18     Anna-Lena Schubert & Michael Nunez        Converted from OOS_noMediation.m
-%                                and ModelEvaluation.m
-%  02/01/18     Michael Nunez          Conversion to releasable code
-%  03/02/18     Michael Nunez         Evaluate joint data
-%  03/06/18     Michael Nunez     Fixes for missing data
-%  04/16/18     Michael Nunez         Load local results
-%  05/18/18     Michael Nunez           Change save location
+%  04/16/18     Anna-Lena Schubert & Michael Nunez        Converted from IS_Mediation.m
 
 
 %% Model fit evaluation
 addpath(genpath('..'));
 chainLength = 30000; %chain length
-firstset = load('../Data/data.mat');        % load IQ and ERP data
-secondset = load('../Data/SecondData.mat');
-firstsetRT = load('../Data/RTdata.mat');      % load RT data
-secondsetRT = load('../Data/SecondRT.mat');
-load('../Results/Joint_Mediation.mat');
+load('../Data/data.mat');        % load IQ and ERP data
+load('../Data/RTdata.mat');      % load RT data
+load('../Results/Joint_Mediation_P3.mat');
 
 jagsout = readjagsout(stats,diagnostics);
 fprintf('The maximum Gelman-Rubin statistic is %.3f \n',max(jagsout.Rhat));
 fprintf('The minimum number of effective samples is %.3f \n',min(jagsout.Neff));
 
 
-bothdata = [firstset.data ; secondset.SecondSet];
-N = numel(bothdata(:,1));   % number of participants
+N = numel(data(:,1));   % number of participants
 
-person = [firstsetRT.person ; secondsetRT.person];
-task = [firstsetRT.task ; secondsetRT.task];
-y = [firstsetRT.y ; secondsetRT.y];
 
 IQ_mu = zeros(chainLength,N,6);
 ERP_mu = zeros(chainLength,N,18);
@@ -60,7 +48,7 @@ a = zeros(chainLength,14,N);
 ter = zeros(chainLength,14,N);
 
 
-if exist('../Results/Eval_Med_IS.mat') ~= 2
+if exist('../Results/Eval_Med_P3_IS.mat') ~= 2
     rng(13);
     for i = 1:N
         for k = 1:6
@@ -155,10 +143,10 @@ if exist('../Results/Eval_Med_IS.mat') ~= 2
     end
 
     RTre = RTre';
-    save('../Results/Eval_Med_IS.mat','IQ','RTdata','ACCdata','RTre','ERPdata');
+    save('../Results/Eval_Med_P3_IS.mat','IQ','RTdata','ACCdata','RTre','ERPdata');
 else
     fprintf('Loading found simulated data...\n');
-    load('../Results/Eval_Med_IS.mat');
+    load('../Results/Eval_Med_P3_IS.mat');
 end
 
 %% Calculate summary statistics and R^2_prediction
@@ -262,7 +250,7 @@ fprintf('%.2f %% mean variance in accuracies described by in-sample prediction\n
 %% Evaluate R² of IQ data
 
 IQ_pred = squeeze(mean(IQ,1));
-IQ_obs = bothdata(:,2:7);
+IQ_obs = data(:,2:7);
 
 for t = 1:6
 	% nonnanIQ = isfinite(IQ_obs(:,t));
@@ -285,7 +273,7 @@ mean_IQ_obs = nanmean(IQ_obs,2);
 %% Evaluate R² of ERP data
 
 ERP_pred = squeeze(mean(ERPdata,1));
-ERP_obs = bothdata(:,8:25);
+ERP_obs = data(:,8:25);
 
 for t = 1:18
 	% nonnanERP = isfinite(ERP_obs(:,t));
@@ -304,11 +292,17 @@ fprintf('%.2f %% mean variance in ERPs described by in-sample prediction\n',mean
 mean_ERP_pred = nanmean(ERP_pred,2);
 mean_ERP_obs = nanmean(ERP_obs,2);
 
-beta3stats = prctile(chains.beta_3(:),[2.5 50 97.5]);
-fprintf('Effect (median posterior and 95%% credible interval) of latent neural processing on latent cognitive ability: %.2f, CI: [%.2f, %.2f]\n',beta3stats(2),beta3stats(1),beta3stats(3));
+beta1stats = prctile(chains.beta_1(:),[2.5 50 97.5]);
+fprintf('Effect (median posterior and 95%% credible interval) of latent neural processing on latent cognitive ability: %.2f, CI: [%.2f, %.2f]\n',beta1stats(2),beta1stats(1),beta1stats(3));
 
 beta2stats = prctile(chains.beta_2(:),[2.5 50 97.5]);
-fprintf('Effect (median posterior and 95%% credible interval) of latent drift rate on latent cognitive ability: %.2f, CI: [%.2f, %.2f]\n',beta2stats(2),beta2stats(1),beta2stats(3));
+fprintf('Effect (median posterior and 95%% credible interval) of latent late-neural processing (P3) on latent cognitive ability: %.2f, CI: [%.2f, %.2f]\n',beta2stats(2),beta2stats(1),beta2stats(3));
 
-beta1 = prctile(chains.beta_1(:),[2.5 50 97.5]);
-fprintf('Effect (median posterior and 95%% credible interval) of latent neural processing on latent drift rate: %.2f, CI: [%.2f, %.2f]\n',beta1(2),beta1(1),beta1(3));
+beta3stats = prctile(chains.beta_3(:),[2.5 50 97.5]);
+fprintf('Effect (median posterior and 95%% credible interval) of latent drift rate on latent cognitive ability: %.2f, CI: [%.2f, %.2f]\n',beta3stats(2),beta3stats(1),beta3stats(3));
+
+beta4stats = prctile(chains.beta_4(:),[2.5 50 97.5]);
+fprintf('Effect (median posterior and 95%% credible interval) of latent neural processing on latent drift rate: %.2f, CI: [%.2f, %.2f]\n',beta4stats(2),beta4stats(1),beta4stats(3));
+
+beta5stats = prctile(chains.beta_5(:),[2.5 50 97.5]);
+fprintf('Effect (median posterior and 95%% credible interval) of latent late-neural processing (P3) on latent drift rate: %.2f, CI: [%.2f, %.2f]\n',beta5stats(2),beta5stats(1),beta5stats(3));

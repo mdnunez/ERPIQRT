@@ -34,7 +34,7 @@
 %  02/01/18     Michael Nunez            Add second set of data
 %                                       Conversion to releasable code
 %  02/07/18     Michael Nunez               Fixes
-%  04/11/18     Michael Nunez              Reassert parallel option
+%  05/04/18     Michael Nunez              Reassert parallel option
 
 %% Notes:
 % 1) Fix gnu parallel by removing "--tollef" line from /etc/parallel/config
@@ -354,17 +354,14 @@ verbosity  =   2;
 maxcores   =   3;
 modules    = {'wiener' 'dic'};
 
-% try 
-%     trinity.assert_parallel()
-%     parallelit = true;
-%     disp 'Parallel detected, will use.'
-% catch me
-%     parallelit = false;
-%     disp 'Parallel failed, will perform sequential.'
-% end
-
-parallelit = false;
-disp 'Parallel failed, will perform sequential.'
+try 
+    trinity.assert_parallel()
+    parallelit = true;
+    disp 'Parallel detected, will use.'
+catch me
+    parallelit = false;
+    disp 'Parallel failed, will perform sequential.'
+end
 
 % Tell Trinity which engine to use
 engine = 'jags';
