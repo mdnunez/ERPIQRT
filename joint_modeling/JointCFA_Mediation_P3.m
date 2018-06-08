@@ -36,6 +36,7 @@
 %                                          by P3 latent P3 factor
 %  04/11/18     Michael Nunez               Conversion to releasable code
 %  04/30/18     Michael Nunez              Add second set of data
+%  06/08/18     Michael Nunez    Reduce number of samples for memory issues
 
 %% Notes:
 % 1) Fix gnu parallel by removing "--tollef" line from /etc/parallel/config
@@ -351,8 +352,8 @@ params = {'IQ.mu','IQ.lambda', 'IQ.theta', 'IQ.eta','IQ.psi', ...
 
 % Set trinity parameters
 modelname  = 'MediationAndP3';
-nsamples   = 1e4;
-nburnin    = 2e3;
+nsamples   = 1e3;
+nburnin    = 2e2;
 nchains    =   3;
 thin       =  10;
 verbosity  =   2;

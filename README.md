@@ -1,6 +1,6 @@
 <img src="./extra/Differentielle_Psychologie.png" height="128"> <img src="./extra/small_cidlab_logo.png" height="128">
 
-# ERPIQRT 0.2.0
+# ERPIQRT 0.2.1
 A model-based cognitive neuroscience account of individual differences in cognitive abilities (ERPIQRT).
 
 **Authors: Anna-Lena Schubert from Heidelberg University, Germany and Michael D. Nunez and Joachim Vandekerckhove from the University of California, Irvine, USA and Dirk Hagemann from Heidelberg University, Germany**
