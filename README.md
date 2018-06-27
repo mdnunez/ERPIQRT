@@ -5,7 +5,7 @@
 Schubert, A. L., Nunez, M. D., Hagemann, D., & Vandekerckhove, J. (2018). Individual differences in cognitive abilities are predicted by cortical processing speed: A model-based cognitive neuroscience account. Manuscript in preparation.
 
 # ERPIQRT
-#### (Repository version 0.3.0)
+#### (Repository version 0.3.1)
 
 Individual differences in cognitive abilities are predicted by cortical processing speed: A model-based cognitive neuroscience account (ERPIQRT).
 
@@ -13,7 +13,7 @@ Individual differences in cognitive abilities are predicted by cortical processi
 
 ### Research Questions
 
-A greater speed of information-processing may facilitate evidence acquisition during decision making and memory updating and give rise to advantages in general cognitive abilities. This in this study we explore this hypothesis by using a hierarchical Bayesian cognitive modeling approach to investigate if individual differences in the velocity of evidence accumulation (a drift-diffusion model parameter that explains some variance in reaction times; RT) mediates the relationship between neural processing (estimated by event-related potentials; ERPs) and general cognitive abilities (measured by intelligence tests; IQ)
+A greater speed of information-processing may facilitate evidence acquisition during decision making and memory updating and give rise to advantages in general cognitive abilities. In this study we explore this hypothesis by using a hierarchical Bayesian cognitive modeling approach to investigate if individual differences in the velocity of evidence accumulation (a drift-diffusion model parameter that explains some variance in reaction times; RT) mediates the relationship between neural processing (estimated by event-related potentials; ERPs) and general cognitive abilities (measured by intelligence tests; IQ)
 
 ### Hypothesis
 
