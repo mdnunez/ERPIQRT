@@ -2,10 +2,10 @@
 
 ### Citation
 
-Schubert, A. L., Nunez, M. D., Hagemann, D., & Vandekerckhove, J. (2018). Individual differences in cognitive abilities are predicted by cortical processing speed: A model-based cognitive neuroscience account. Manuscript in preparation.
+Schubert, A. L., Nunez, M. D., Hagemann, D., & Vandekerckhove, J. (2018). [Individual differences in cognitive abilities are predicted by cortical processing speed: A model-based cognitive neuroscience account.](https://www.biorxiv.org/content/early/2018/07/23/374827) bioRxiv. doi: 10.1101/374827
 
 # ERPIQRT
-#### (Repository version 0.3.2)
+#### (Repository version 0.4.0)
 
 Individual differences in cognitive abilities are predicted by cortical processing speed: A model-based cognitive neuroscience account (ERPIQRT).
 
