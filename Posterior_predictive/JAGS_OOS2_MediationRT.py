@@ -27,8 +27,8 @@
 # 08/30/17      Michael Nunez                  Increase randsampLength
 # 03/09/18      Michael Nunez            Evaluate joint data
 # 05/24/18      Michael Nunez                          Load local results
-# 11/26/18      Michael Nunez                Converted from JAGS_OOS2_MediationRT.py
-###UNFINISHED###
+# 11/27/18      Michael Nunez                Converted from JAGS_OOS2_MediationRT.py
+
 
 # Imports
 import numpy as np
