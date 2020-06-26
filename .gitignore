@@ -1,5 +1,8 @@
 ##https://github.com/github/gitignore
 
+#
+.dropbox
+
 # Ignore Results
 Results/*.mat
 
